@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: environment/Dockerfile
+    image: back/php:7.3-fpm-stretch
+    environment:
+      XDEBUG_CONFIG: "remote_host=172.17.0.1 remote_enable=1"
+      PHP_IDE_CONFIG: "serverName=php7.3"
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+
+  #MySQL Service
+  db:
+    image: mysql/mysql-server:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: anglo
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./environment/db.cnf:/etc/mysql/my.cnf
+      - ./environment/dbentrypoint:/docker-entrypoint-initdb.d
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
+    driver: local
