@@ -1,17 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce20504b-b17d-4b2e-a872-df63e307f52f" name="Default Changelist" comment="" />
+    <list default="true" id="ce20504b-b17d-4b2e-a872-df63e307f52f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/anglo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/anglo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/environment/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/environment/Dockerfile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/appstarter/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="composer.json" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/appstarter/vendor/laminas/laminas-escaper" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/kint-php/kint" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/laminas/laminas-zendframework-bridge" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/codeigniter4/framework" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/mikey179/vfsstream" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/composer" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/appstarter/vendor/phpspec/prophecy" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1it3F3Uh8gXXqQ2ygqlIEwcCWS9" />
   <component name="ProjectLevelVcsManager">
@@ -44,6 +97,10 @@
       <workItem from="1602713337440" duration="2172000" />
       <workItem from="1602715528085" duration="2076000" />
       <workItem from="1602717737490" duration="617000" />
+      <workItem from="1602727967469" duration="599000" />
+      <workItem from="1602730209964" duration="643000" />
+      <workItem from="1602778092151" duration="2173000" />
+      <workItem from="1602780417739" duration="1421000" />
     </task>
     <servers />
   </component>
