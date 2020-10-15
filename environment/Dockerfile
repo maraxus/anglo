@@ -24,6 +24,12 @@ RUN pecl install xdebug \
     exif \
   && rm -rf /tmp/*
 
+RUN apt-get install -qq --no-install-recommends \
+    libicu-dev \
+  && docker-php-ext-configure intl \
+  && docker-php-ext-install \
+    intl
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN sed -ri -e 's!user = www-data!; user = www-data!g' \
