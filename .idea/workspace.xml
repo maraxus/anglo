@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce20504b-b17d-4b2e-a872-df63e307f52f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/anglo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/anglo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/environment/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/environment/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +99,7 @@
       <workItem from="1602730209964" duration="643000" />
       <workItem from="1602778092151" duration="2173000" />
       <workItem from="1602780417739" duration="1421000" />
+      <workItem from="1602784960832" duration="599000" />
     </task>
     <servers />
   </component>
