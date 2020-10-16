@@ -19,8 +19,9 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 /vendor/
+writable/debugbar/*
 
 ### CodeIgniter Patch ###
-.idea/workspace.xml
+.idea
 
 # End of https://www.toptal.com/developers/gitignore/api/codeigniter
