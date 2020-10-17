@@ -22,6 +22,9 @@ application/logs/*
 writable/debugbar/*
 
 ### CodeIgniter Patch ###
+# End of https://www.toptal.com/developers/gitignore/api/codeigniterwritable/cache
 .idea
-
-# End of https://www.toptal.com/developers/gitignore/api/codeigniter
+writable/debugbar
+writable/logs
+writable/session
+writable/uploads
