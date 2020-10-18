@@ -16,11 +16,10 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /**
  * --------------------------------------------------------------------
@@ -30,7 +29,29 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->group('api',
+    ['namespace' => 'App\API'],
+    function ($routes) {
+        $routes->get('/',
+            function () {
+                echo "index";
+            });
+        $routes->get('(:num)',
+            function ($num) {
+                echo "view $num" ;
+            });
+        $routes->post('/', function () {
+            echo "post" ;
+        });
+        $routes->patch('(:num)', function ($num) {
+            echo "patch $num" ;
+        });
+        $routes->delete('(:num)', function ($num) {
+            echo "delete $num" ;
+        });
+    });
+
+$routes->get('/', 'Home');
 
 /**
  * --------------------------------------------------------------------
