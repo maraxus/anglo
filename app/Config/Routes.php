@@ -33,10 +33,10 @@ $routes->group('api',
     ['namespace' => 'App\Controllers\API'],
     function ($routes) {
         $routes->get('/', 'Task');
-        $routes->get('(:num)','Task');
+        $routes->get('(:num)','Task::show/$1');
         $routes->post('/', 'Task');
-        $routes->patch('(:num)', 'Task');
-        $routes->delete('(:num)', 'Task');
+        $routes->patch('(:num)', 'Task::edit/$1');
+        $routes->delete('(:num)', 'Task::delete/$1');
     });
 
 $routes->get('/', 'Home');
