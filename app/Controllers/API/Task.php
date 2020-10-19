@@ -1,21 +1,18 @@
 <?php
 namespace App\Controllers\API;
 
-use App\Controllers\BaseController;
 use App\Exceptions\Repository\RequestNotValidException;
 use App\Exceptions\Repository\NotFoundInCollectionException;
+use Throwable;
 
-class Task extends BaseController
+class Task extends ApiBaseController
 {
-    protected static $notValidMessage = "There's a error with the request";
-    protected static $notFoundMessage = "Can't complete operation because the task wasn't identified in the collection";
-    protected static $uncaughtMessage = "A unexpected error occurred";
 
     public function index()
     {
         try {
-            $data = $this->getCollection('task');
-        } catch (\Throwable $exception) {
+            $data = $this->getCollection();
+        } catch (Throwable $exception) {
             $data['message'] = "Sorry, couldn't get Collection";
             $data['body']['message'] = $exception->getMessage();
             return $this->response->setStatusCode(500)
@@ -29,7 +26,7 @@ class Task extends BaseController
     {
         try {
             $data = $this->getFromId($id);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             return $this->createErrorResponse($exception);
         }
 
@@ -62,7 +59,7 @@ class Task extends BaseController
 
 
     /**
-     * @throws \App\Exceptions\Repository\NotFoundInCollectionException | \App\Exceptions\Repository\RequestNotValidException
+     * @throws NotFoundInCollectionException | RequestNotValidException
      */
     protected function getFromId(int $id) : Iterable
     {
@@ -74,21 +71,4 @@ class Task extends BaseController
         return ["test2"];
     }
 
-    protected function createErrorResponse (\Throwable $exception)
-    {
-        if ($exception instanceof NotFoundInCollectionException) {
-            $data['message'] = static::$notFoundMessage;
-            $this->response->setStatusCode(404);
-            return $this->response->setJSON($data);
-        }
-        if ($exception instanceof RequestNotValidException) {
-            $data['message'] = static::$notValidMessage;
-            $this->response->setStatusCode(403);
-            return $this->response->setJSON($data);
-        }
-        $data['message'] = static::$uncaughtMessage;
-        $data['body']['message'] = $exception->getMessage();
-        $this->response->setStatusCode(500);
-        return $this->response->setJSON($data);
-    }
 }
