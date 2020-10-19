@@ -7,8 +7,16 @@ class Task extends BaseController
 {
     public function index()
     {
+        try {
+            $data = $this->getCollection('task');
+        } catch (\Throwable $exception) {
+            $data['message'] = "Sorry, couldn't get Collection";
+            $data['body']['message'] = $exception->getMessage();
+            return $this->response->setStatusCode(500)
+                ->setJSON($data);
+        }
         return $this->response->setStatusCode(200)
-            ->setJSON(["message" => "success"]);
+            ->setJSON($data);
     }
 
     public function show()
@@ -33,5 +41,10 @@ class Task extends BaseController
     {
         return $this->response->setStatusCode(200)
             ->setJSON(["message" => "success"]);
+    }
+
+    protected function getCollection() : Iterable
+    {
+        return ["test"];
     }
 }
