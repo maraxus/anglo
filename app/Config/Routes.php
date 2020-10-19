@@ -30,25 +30,13 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->group('api',
-    ['namespace' => 'App\API'],
+    ['namespace' => 'App\Controllers\API'],
     function ($routes) {
-        $routes->get('/',
-            function () {
-                echo "index";
-            });
-        $routes->get('(:num)',
-            function ($num) {
-                echo "view $num" ;
-            });
-        $routes->post('/', function () {
-            echo "post" ;
-        });
-        $routes->patch('(:num)', function ($num) {
-            echo "patch $num" ;
-        });
-        $routes->delete('(:num)', function ($num) {
-            echo "delete $num" ;
-        });
+        $routes->get('/', 'Task');
+        $routes->get('(:num)','Task');
+        $routes->post('/', 'Task');
+        $routes->patch('(:num)', 'Task');
+        $routes->delete('(:num)', 'Task');
     });
 
 $routes->get('/', 'Home');
