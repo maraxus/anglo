@@ -34,9 +34,11 @@ $routes->group('api',
     function ($routes) {
         $routes->get('/', 'Task');
         $routes->get('(:num)','Task::show/$1');
-        $routes->post('/', 'Task');
+        $routes->post('/', 'Task::create');
         $routes->patch('(:num)', 'Task::edit/$1');
         $routes->delete('(:num)', 'Task::delete/$1');
+        $routes->get('category', 'Category');
+        $routes->get('person', 'Person');
     });
 
 $routes->get('/', 'Home');
