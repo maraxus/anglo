@@ -1,5 +1,6 @@
 <?php namespace Config;
 
+use App\Services\Repositories\RepositoryInterface;
 use CodeIgniter\Config\Services as CoreServices;
 
 /**
@@ -18,13 +19,14 @@ use CodeIgniter\Config\Services as CoreServices;
 class Services extends CoreServices
 {
 
-	//    public static function example($getShared = true)
-	//    {
-	//        if ($getShared)
-	//        {
-	//            return static::getSharedInstance('example');
-	//        }
-	//
-	//        return new \CodeIgniter\Example();
-	//    }
+	    public static function TaskRepository($getShared = false) : RepositoryInterface
+	    {
+            $taskModel = new \App\Models\Task();
+            if ($getShared)
+	        {
+	            return static::getSharedInstance('TaskRepository');
+	        }
+
+	        return new \App\Services\Repositories\TaskRepository($taskModel);
+	    }
 }
