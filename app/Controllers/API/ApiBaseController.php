@@ -19,6 +19,9 @@ class ApiBaseController extends BaseController
             return $this->response->setJSON($data);
         }
         if ($exception instanceof RequestNotValidException) {
+            if ($exception->hasErrors()) {
+                $data['errors'] = $exception->getErrors();
+            }
             $data['message'] = static::$notValidMessage;
             $this->response->setStatusCode(403);
             return $this->response->setJSON($data);
