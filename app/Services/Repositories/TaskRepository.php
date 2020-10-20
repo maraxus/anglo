@@ -1,6 +1,8 @@
 <?php
 namespace App\Services\Repositories;
 
+use App\Exceptions\Repository\NotFoundInCollectionException;
+use App\Exceptions\Repository\RequestNotValidException;
 use CodeIgniter\Model;
 
 class TaskRepository implements RepositoryInterface
@@ -10,12 +12,21 @@ class TaskRepository implements RepositoryInterface
      */
     private $task;
 
+    private $validation;
+
     /**
      * TaskRepository constructor.
      */
-    public function __construct(\CodeIgniter\Model $model)
+    public function __construct(\CodeIgniter\Model $model,\CodeIgniter\Validation\Validation $validation )
     {
         $this->task = new $model();
+        $this->validation = $validation;
+        $rules = $this->task->getValidationRules();
+        $messages = $this->task->getValidationMessages();
+        $this->validation->setRules(
+            $rules,
+            $messages
+        );
     }
 
     public function getCollection(): iterable
@@ -28,18 +39,55 @@ class TaskRepository implements RepositoryInterface
         return $this->task->find(['id'=>$id]);
     }
 
-    public function create(iterable $data): iterable
+    public function create(array $fields): array
     {
-        // TODO: Implement create() method.
+        try {
+            $this->ensureValidData($fields);
+            return [
+                'id' => $this->task->insert($fields)
+            ];
+        } catch (\Throwable $exception) {
+            throw $exception;
+        }
     }
 
-    public function findWithIdAndUpdate(int $id, iterable $data): iterable
+    public function findWithIdAndUpdate(int $id, array $data): void
     {
-        // TODO: Implement findWithIdAndUpdate() method.
+        try {
+            $this->ensureValidData($data);
+            $task = $this->task->find($id);
+            if ($task === null) {
+                throw new NotFoundInCollectionException();
+            }
+            $this->task->update($id, $data);
+        } catch (\Throwable $exception) {
+            throw $exception;
+        }
     }
 
-    public function findWithIdAndDelete(int $id): iterable
+    public function findWithIdAndDelete(int $id): void
     {
-        // TODO: Implement findWithIdAndDelete() method.
+        try {
+            $task = $this->task->find($id);
+            if ($task === null) {
+                throw new NotFoundInCollectionException();
+            }
+            $this->task->delete($id);
+        } catch (\Throwable $exception) {
+            throw $exception;
+        }
+    }
+
+    /**
+     * @throws  RequestNotValidException
+     */
+    public function ensureValidData(array $data): void
+    {
+        $validates = $this->validation->run($data);
+        if (!$validates) {
+            $exception = new RequestNotValidException();
+            $exception->setErrors($this->validation->getErrors());
+            throw $exception;
+        }
     }
 }
