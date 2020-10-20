@@ -25,6 +25,7 @@ class ApiBaseController extends BaseController
         }
         $data['message'] = static::$uncaughtMessage;
         $data['body']['message'] = $exception->getMessage();
+        $data['body']['trace'] = $exception->getTrace();
         $this->response->setStatusCode(500);
         return $this->response->setJSON($data);
     }
