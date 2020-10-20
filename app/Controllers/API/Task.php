@@ -1,22 +1,30 @@
 <?php
 namespace App\Controllers\API;
 
-use App\Exceptions\Repository\RequestNotValidException;
-use App\Exceptions\Repository\NotFoundInCollectionException;
+use App\Services\Repositories\RepositoryInterface;
 use Throwable;
 
 class Task extends ApiBaseController
 {
 
+    /**
+     * @var RepositoryInterface
+     */
+    private $tasks;
+
+    public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
+    {
+        parent::initController($request, $response, $logger);
+        // attaching Task Repository service
+        $this->tasks = \Config\Services::TaskRepository();
+    }
+
     public function index()
     {
         try {
-            $data = $this->getCollection();
+            $data = $this->tasks->getCollection();
         } catch (Throwable $exception) {
-            $data['message'] = "Sorry, couldn't get Collection";
-            $data['body']['message'] = $exception->getMessage();
-            return $this->response->setStatusCode(500)
-                ->setJSON($data);
+            return $this->createErrorResponse($exception);
         }
         return $this->response->setStatusCode(200)
             ->setJSON($data);
@@ -25,13 +33,13 @@ class Task extends ApiBaseController
     public function show($id)
     {
         try {
-            $data = $this->getFromId($id);
+            $data = $this->tasks->getFromId($id);
         } catch (Throwable $exception) {
             return $this->createErrorResponse($exception);
         }
 
         return $this->response->setStatusCode(200)
-            ->setJSON(["message" => "success", "body" => $data]);
+            ->setJSON($data);
     }
 
     public function edit()
@@ -52,23 +60,22 @@ class Task extends ApiBaseController
             ->setJSON(["message" => "success"]);
     }
 
-    protected function getCollection() : Iterable
-    {
-        return ["test"];
-    }
+//    protected function getCollection() : Iterable
+//    {
+//        return ["test"];
+//    }
 
-
-    /**
-     * @throws NotFoundInCollectionException | RequestNotValidException
-     */
-    protected function getFromId(int $id) : Iterable
-    {
-        if ($id == 1) {
-            throw new NotFoundInCollectionException();
-        } elseif ($id == 5) {
-            throw new RequestNotValidException();
-        }
-        return ["test2"];
-    }
+//    /**
+//     * @throws NotFoundInCollectionException | RequestNotValidException
+//     */
+//    protected function getFromId(int $id) : Iterable
+//    {
+//        if ($id == 1) {
+//            throw new NotFoundInCollectionException();
+//        } elseif ($id == 5) {
+//            throw new RequestNotValidException();
+//        }
+//        return ["test2"];
+//    }
 
 }
