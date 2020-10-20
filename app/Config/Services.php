@@ -22,11 +22,34 @@ class Services extends CoreServices
 	    public static function TaskRepository($getShared = false) : RepositoryInterface
 	    {
             $taskModel = new \App\Models\Task();
+            $validation = \Config\Services::validation();
             if ($getShared)
 	        {
 	            return static::getSharedInstance('TaskRepository');
 	        }
 
-	        return new \App\Services\Repositories\TaskRepository($taskModel);
+	        return new \App\Services\Repositories\TaskRepository($taskModel, $validation);
+	    }
+
+	    public static function CategoryRepository($getShared = false) : RepositoryInterface
+	    {
+            $categoryModel = new \App\Models\Category();
+            if ($getShared)
+	        {
+	            return static::getSharedInstance('CategoryRepository');
+	        }
+
+	        return new \App\Services\Repositories\CategoryRepository($categoryModel);
+	    }
+
+	    public static function PersonRepository($getShared = false) : RepositoryInterface
+	    {
+            $personModel = new \App\Models\Person();
+            if ($getShared)
+	        {
+	            return static::getSharedInstance('CategoryRepository');
+	        }
+
+	        return new \App\Services\Repositories\PersonRepository($personModel);
 	    }
 }
