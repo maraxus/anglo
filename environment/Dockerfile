@@ -18,6 +18,7 @@ RUN apt-get update -qq \
 RUN pecl install xdebug \
   && docker-php-ext-install \
     pcntl \
+    mysqli \
     zip \
     pdo_mysql \
     mbstring \
@@ -86,6 +87,7 @@ EXPOSE 80
 STOPSIGNAL SIGTERM
 CMD ["/usr/bin/supervisord"]
 USER root
-RUN docker-php-ext-enable xdebug
+RUN docker-php-ext-enable xdebug \
+    mysqli
 COPY ./environment/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 USER www-data:www-data
