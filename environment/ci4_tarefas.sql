@@ -1,0 +1,11 @@
+USE ci4;
+CREATE TABLE IF NOT EXISTS responsaveis (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(60));
+CREATE TABLE IF NOT EXISTS categoria (id INT AUTO_INCREMENT PRIMARY KEY, descrição VARCHAR(160));
+CREATE TABLE IF NOT EXISTS tarefas (id INT AUTO_INCREMENT PRIMARY KEY, descricao varchar(140), responsavel INT, data DATE, finalizacao DATE, categoria INT);
+ALTER TABLE tarefas ADD CONSTRAINT FOREIGN KEY responsaveis_fk(responsavel) REFERENCES responsaveis(id) ON DELETE CASCADE;
+ALTER TABLE tarefas ADD CONSTRAINT FOREIGN KEY categoria_fk(categoria) REFERENCES categoria(id) ON DELETE CASCADE;
+insert into ci4.tarefas (id, descricao, responsavel, data, finalizacao, categoria) values (2, '2º contato pós vendas', 2, '2020-10-20', '2020-10-22', 1);
+insert into ci4.tarefas (id, descricao, responsavel, data, finalizacao, categoria) values (4, '3º contato pós vendas', 2, '2020-10-20', '2020-10-22', 1);
+insert into ci4.tarefas (id, descricao, responsavel, data, finalizacao, categoria) values (5, '3º contato pós vendas', 2, '2020-10-20', '2020-10-22', 1);
+insert into ci4.tarefas (id, descricao, responsavel, data, finalizacao, categoria) values (6, '3º contato pós vendas', 2, '2020-10-20', '2020-10-22', 1);
+insert into ci4.tarefas (id, descricao, responsavel, data, finalizacao, categoria) values (7, '3º contato pós vendas', 2, '2020-10-20', '2020-10-22', 1);
