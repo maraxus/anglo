@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers\API;
 
+use App\Exceptions\Repository\RequestNotValidException;
 use App\Services\Repositories\RepositoryInterface;
 use Throwable;
 
@@ -44,21 +45,42 @@ class Task extends ApiBaseController
 
     public function edit($id)
     {
-
-        return $this->response->setStatusCode(200)
-            ->setJSON(["message" => "success"]);
+        $fields = $this->request->getJSON(true);
+        if($fields === null) {
+            return $this->createErrorResponse(new RequestNotValidException("json invalid"));
+        }
+        try {
+            $this->tasks->findWithIdAndUpdate($id, $fields);
+            return $this->response->setStatusCode(204);
+        } catch (Throwable $exception) {
+            return $this->createErrorResponse($exception);
+        }
     }
 
     public function delete($id)
     {
-        return $this->response->setStatusCode(200)
-            ->setJSON(["message" => "success"]);
+        try {
+            $this->tasks->findWithIdAndDelete($id);
+        } catch (Throwable $exception) {
+            return $this->createErrorResponse($exception);
+        }
+        return $this->response->setStatusCode(204);
     }
 
     public function create()
     {
+        try {
+            $fields = $this->request->getJSON(true);
+            if($fields === null) {
+                return $this->createErrorResponse(new RequestNotValidException("json invalid"));
+            }
+            $data = $this->tasks->create($fields);
+        } catch (Throwable $exception) {
+            return $this->createErrorResponse($exception);
+        }
+
         return $this->response->setStatusCode(200)
-            ->setJSON(["message" => "success"]);
+            ->setJSON($data);
     }
 
 }
