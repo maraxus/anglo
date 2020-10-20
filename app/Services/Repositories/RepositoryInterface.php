@@ -6,6 +6,8 @@ use App\Exceptions\Repository\RequestNotValidException;
 
 interface RepositoryInterface
 {
+
+
     public function getCollection() : Iterable;
 
     /**
@@ -16,16 +18,16 @@ interface RepositoryInterface
     /**
      * @throws RequestNotValidException
      */
-    public function create(iterable $data) : Iterable;
+    public function create(array $data) : array;
 
     /**
      * @throws NotFoundInCollectionException
      * @throws RequestNotValidException
      */
-    public function findWithIdAndUpdate(int $id, iterable $data) : Iterable;
+    public function findWithIdAndUpdate(int $id, array $data) : void;
 
     /**
      * @throws NotFoundInCollectionException
      */
-    public function findWithIdAndDelete(int $id) : Iterable;
+    public function findWithIdAndDelete(int $id) : void;
 }
