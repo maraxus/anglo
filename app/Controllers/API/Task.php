@@ -42,13 +42,14 @@ class Task extends ApiBaseController
             ->setJSON($data);
     }
 
-    public function edit()
+    public function edit($id)
     {
+
         return $this->response->setStatusCode(200)
             ->setJSON(["message" => "success"]);
     }
 
-    public function delete()
+    public function delete($id)
     {
         return $this->response->setStatusCode(200)
             ->setJSON(["message" => "success"]);
@@ -59,23 +60,5 @@ class Task extends ApiBaseController
         return $this->response->setStatusCode(200)
             ->setJSON(["message" => "success"]);
     }
-
-//    protected function getCollection() : Iterable
-//    {
-//        return ["test"];
-//    }
-
-//    /**
-//     * @throws NotFoundInCollectionException | RequestNotValidException
-//     */
-//    protected function getFromId(int $id) : Iterable
-//    {
-//        if ($id == 1) {
-//            throw new NotFoundInCollectionException();
-//        } elseif ($id == 5) {
-//            throw new RequestNotValidException();
-//        }
-//        return ["test2"];
-//    }
 
 }
